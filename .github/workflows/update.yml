@@ -2,7 +2,8 @@ name: Updater
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: "40 * * * *"
+      timezone: "Asia/Novosibirsk"
 
 jobs:
   update_widget:
@@ -15,18 +16,17 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-
+          python-version: "3.12"
 
       - name: Скачать роблокс бесплатно без регистрации
         run: |
           python -m pip install --upgrade pip
-          pip install requests    
+          pip install requests
       - name: Update Widget
         env:
-            DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
-            DISCORD_APP_ID: ${{ secrets.DISCORD_APP_ID }}
-            DISCORD_USER_ID: ${{ secrets.DISCORD_USER_ID }}
-            STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          DISCORD_APP_ID: ${{ secrets.DISCORD_APP_ID }}
+          DISCORD_USER_ID: ${{ secrets.DISCORD_USER_ID }}
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
 
         run: python widget.py
