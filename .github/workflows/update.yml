@@ -2,7 +2,7 @@ name: Updater
 
 on:
   schedule:
-    - cron: "0/30/59 12-23 * * *"
+    - cron: "30/59 12-23 * * *"
       timezone: "Asia/Novosibirsk"
 
 jobs:
