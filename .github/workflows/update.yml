@@ -1,4 +1,4 @@
-name: Run Python script every hour
+name: Updater
 
 on:
   schedule:
@@ -24,5 +24,5 @@ jobs:
             DISCORD_APP_ID: ${{ secrets.DISCORD_APP_ID }}
             DISCORD_USER_ID: ${{ secrets.DISCORD_USER_ID }}
             STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
-            
+
         run: python widget.py
