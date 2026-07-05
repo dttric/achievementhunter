@@ -8,8 +8,8 @@ min, max = api.get_progress(config["sid"], config["gid"]).split(":")
 
 discord = {
     "token": os.getenv("DISCORD_TOKEN"),
-    "appid": os.getenv("DISCORD_APP_ID"),
-    "uid": os.getenv("DISCORD_USER_ID")
+    "appid": int(os.getenv("DISCORD_APP_ID")).strip(),
+    "uid": int(os.getenv("DISCORD_USER_ID")).strip()
 }
 
 objective = f"{int(min)/int(max)*100:.0f}%"
