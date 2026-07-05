@@ -3,7 +3,7 @@ name: Updater
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30/59 12-23 * * *"
+    - cron: "0/30 * * * *"
       timezone: "Asia/Novosibirsk"
 
 jobs:
