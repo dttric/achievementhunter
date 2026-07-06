@@ -33,10 +33,24 @@ def get_game(gid):
     url = "http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/"
     params = {"key": api_key, "appid": gid}
     response = requests.get(url, params=params)
+
+    url2 = f"https://store.steampowered.com/api/appdetails?appids={gid}"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+    }
+    response2 = requests.get(url2, headers)
+    data = response.json()
+
     if gid in override.override_name:
-        return override.override_name[gid]
+        return {
+            "name": override.override_name[gid],
+            "developer": data[gid]["data"]["developers"],
+        }
     else:
-        return response.json()["game"]["gameName"]
+        return {
+            "name": response.json()["game"]["gameName"],
+            "developer": data[gid]["data"]["developers"],
+        }
 
 
 def get_image(gid):

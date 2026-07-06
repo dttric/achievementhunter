@@ -19,15 +19,19 @@ objdesc = "from 100%"
 
 data = json.dumps(
     {
-        "username": "pizda.silent",
+        "username": f"{config['discord_user']}",
         "data": {
             "dynamic": [
                 {
                     "type": 1,  # эту хуету менять надо если меняешь игру, конкретно тут у меня разработчики айзека
                     "name": "subtitle",
-                    "value": "ZA/UM",
+                    "value": f"{api.get_game(config['gid'])['developer']}",
                 },
-                {"type": 1, "name": "title", "value": f"{api.get_game(config['gid'])}"},
+                {
+                    "type": 1,
+                    "name": "title",
+                    "value": f"{api.get_game(config['gid'])['name']}",
+                },
                 {
                     "type": 3,
                     "name": "imageico",
