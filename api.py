@@ -2,6 +2,8 @@ import os
 
 import requests
 
+import override
+
 # Этот файл взаимодействует с Steam Web API для получения инфы о игре и игроке
 
 api_key = os.getenv("STEAM_API_KEY")
@@ -31,7 +33,10 @@ def get_game(gid):
     url = "http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/"
     params = {"key": api_key, "appid": gid}
     response = requests.get(url, params=params)
-    return response.json()["game"]["gameName"]
+    if gid in override.override_name:
+        return override.override_name[gid]
+    else:
+        return response.json()["game"]["gameName"]
 
 
 def get_image(gid):
