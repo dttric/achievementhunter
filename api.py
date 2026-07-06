@@ -39,7 +39,7 @@ def get_game(gid):
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
     }
     response2 = requests.get(url2, headers)
-    data = response.json()
+    data = response2.json()
 
     if gid in override.override_name:
         return {
