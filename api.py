@@ -44,7 +44,7 @@ def get_game(gid):
     if gid in override.override_name:
         return {
             "name": override.override_name[gid],
-            "developer": data[gid]["data"]["developers"],
+            "developer": data[f"{gid}"]["data"]["developers"],
         }
     else:
         return {
