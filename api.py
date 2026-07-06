@@ -49,7 +49,7 @@ def get_game(gid):
     else:
         return {
             "name": response.json()["game"]["gameName"],
-            "developer": data[gid]["data"]["developers"],
+            "developer": data[f"{gid}"]["data"]["developers"],
         }
 
 
