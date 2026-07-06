@@ -2,8 +2,6 @@ import os
 
 import requests
 
-import override
-
 # Этот файл взаимодействует с Steam Web API для получения инфы о игре и игроке
 
 api_key = os.getenv("STEAM_API_KEY")
