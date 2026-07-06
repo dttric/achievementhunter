@@ -9,7 +9,7 @@ import override
 api_key = os.getenv("STEAM_API_KEY")
 
 
-def fuck_the_developers(arr):
+def arrtostring(arr):
     if len(arr) > 1:
         return ", ".join(arr)
     else:
@@ -38,27 +38,17 @@ def get_progress(sid, gid):
 
 
 def get_game(gid):
-    url = "http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/"
-    params = {"key": api_key, "appid": gid}
-    response = requests.get(url, params=params)
-
-    url2 = f"https://store.steampowered.com/api/appdetails?appids={gid}"
+    url = f"https://store.steampowered.com/api/appdetails?appids={gid}"
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
     }
-    response2 = requests.get(url2, headers)
-    data = response2.json()
+    response = requests.get(url, headers)
+    data = response.json()
 
-    if gid in override.override_name:
-        return {
-            "name": override.override_name[gid],
-            "developer": fuck_the_developers(data[f"{gid}"]["data"]["developers"]),
-        }
-    else:
-        return {
-            "name": response.json()["game"]["gameName"],
-            "developer": fuck_the_developers(data[f"{gid}"]["data"]["developers"]),
-        }
+    return {
+        "name": data[f"{gid}"]["data"]["name"],
+        "developer": arrtostring(data[f"{gid}"]["data"]["developers"]),
+    }
 
 
 def get_image(gid):
