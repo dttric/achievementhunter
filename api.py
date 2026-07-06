@@ -40,7 +40,7 @@ def get_game(gid):
 def get_image(gid):
     return {
         "hero": f"https://steamcdn-a.akamaihd.net/steam/apps/{gid}/hero_capsule.jpg",
-        "icon": f"https://steamcdn-a.akamaihd.net/steam/apps/{gid}/community_icon.jpg"
+        "icon": f"https://steamcdn-a.akamaihd.net/steam/apps/{gid}/community_icon.jpg" # <---- не работает бтв, вырежу/заменю позже
     }
 
 def get_player(sid):
