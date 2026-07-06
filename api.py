@@ -9,6 +9,13 @@ import override
 api_key = os.getenv("STEAM_API_KEY")
 
 
+def fuck_the_developers(arr):
+    if len(arr) > 1:
+        return ", ".join(arr)
+    else:
+        return str(arr[0])
+
+
 def get_progress(sid, gid):
     url = "http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/"
     params = {"key": api_key, "steamid": sid, "appid": gid}
@@ -21,6 +28,7 @@ def get_progress(sid, gid):
         response2 = requests.get(url2, params=params2)
     except:
         return "Error fetching schema"
+
     try:
         return f"{sum(1 for achievement in response1.json()['playerstats']['achievements'] if achievement['achieved'] == 1)}:{len(response2.json()['game']['availableGameStats']['achievements'])}"
     except KeyError:
@@ -44,12 +52,12 @@ def get_game(gid):
     if gid in override.override_name:
         return {
             "name": override.override_name[gid],
-            "developer": data[f"{gid}"]["data"]["developers"],
+            "developer": fuck_the_developers(data[f"{gid}"]["data"]["developers"]),
         }
     else:
         return {
             "name": response.json()["game"]["gameName"],
-            "developer": data[f"{gid}"]["data"]["developers"],
+            "developer": fuck_the_developers(data[f"{gid}"]["data"]["developers"]),
         }
 
 
