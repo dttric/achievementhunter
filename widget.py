@@ -14,9 +14,6 @@ discord = {
     "uid": int(os.getenv("DISCORD_USER_ID")),
 }
 
-objective = f"{int(min) / int(max) * 100:.0f}%"
-objdesc = "from 100%"
-
 data = json.dumps(
     {
         "username": f"{config['discord_user']}",
@@ -37,10 +34,10 @@ data = json.dumps(
                     "name": "imageico",
                     "value": {"url": f"{api.get_image(config['gid'])['hero']}"},
                 },
-                {"type": 1, "name": "objective", "value": f"{objective}"},
+                {"type": 1, "name": "objective", "value": f"{int(min) / int(max) * 100:.0f}%"},
                 {"type": 2, "name": "curr", "value": int(min)},
                 {"type": 2, "name": "max", "value": int(max)},
-                {"type": 1, "name": "objdesc", "value": f"{objdesc}"},
+                {"type": 1, "name": "objdesc", "value": "from 100%"},
                 {
                     "type": 1,
                     "name": "ministat",
